@@ -404,7 +404,38 @@ namespace Xamarin.Essentials
             }
         }
 
-        public partial class Photos : BasePlatformPermission
+        public partial class PushNotifications : BasePlatformPermission
+        {
+            public override (string androidPermission, bool isRuntime)[] RequiredPermissions
+            {
+                get
+                {
+                    var permissions = new List<(string, bool)> { };
+
+                    //if (IsDeclaredInManifest(MissingPermissions.PUSH_NOTIFICATIONS))
+                    //    permissions.Add((MissingPermissions.PUSH_NOTIFICATIONS, true));
+                    
+#if __ANDROID_33__
+                    permissions.AddRange(new[]
+                    {
+                        (Manifest.Permission.ReceiveBootCompleted, true), (Manifest.Permission.WakeLock, true),
+                        (Manifest.Permission.Vibrate, true), (Manifest.Permission.Internet, true),
+                        (Manifest.Permission.AccessNetworkState, true),
+                        ("android.permission.PostNotifications", true),
+                        (Manifest.Permission.ForegroundService, true),
+                        ("com.google.android.c2dm.permission.RECEIVE", true),
+                        ("com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE", true),
+                        ("android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS", true),
+                        ("android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND", true)
+                    });
+ #endif
+                    return permissions.ToArray();
+                }
+            }
+ 
+
+        }
+public partial class Photos : BasePlatformPermission
         {
         }
 

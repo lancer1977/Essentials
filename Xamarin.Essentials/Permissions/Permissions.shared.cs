@@ -118,6 +118,10 @@ namespace Xamarin.Essentials
         {
         }
 
+        public partial class PushNotifications
+        {
+        }
+
         public partial class Reminders
         {
         }
