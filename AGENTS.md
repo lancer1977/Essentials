@@ -73,6 +73,11 @@ For DevOps, infrastructure, deployment, security, GitOps, and service work:
   its component model maps onto the same MVVM split used elsewhere in the
   portfolio. Record the reason in this repo's `AGENTS.md` when a different
   stack is a deliberate exception.
+  - **Exception for this repo**: `Essentials` is a Xamarin.Forms component
+    library and sample/device-test suite (`Samples/Samples.csproj`, 40+ XAML
+    views), with no Blazor project anywhere in the tree. New sample or
+    device-test UI here stays on Xamarin.Forms/XAML; introducing Blazor would
+    add a second UI stack rather than avoid one.
 - Unit-test ViewModels, parsers, and business/domain logic; keep those tests
   free of filesystem, network, database, or UI-thread dependencies.
 - Add integration tests where a change crosses a boundary a unit test can't
